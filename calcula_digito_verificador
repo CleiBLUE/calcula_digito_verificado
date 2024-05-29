@@ -1,0 +1,14 @@
+def calcula_digito_verificador(cpf):
+    cpf = [int(digito) for digito in cpf]
+    while len(cpf) < 11:
+        r = sum([(len(cpf)+1-i)*v for i,v in enumerate(cpf)]) % 11
+        if r > 1:
+            f = 11 - r
+        else:
+            f = 0
+        cpf.append(f)
+    return cpf
+
+cpf = input("Digite os primeiros 9 dígitos do CPF: ")
+cpf = calcula_digito_verificador(cpf)
+print("CPF completo: ", ''.join(map(str, cpf)))
